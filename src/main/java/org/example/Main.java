@@ -1,25 +1,40 @@
 package org.example;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
-        Fruit apple = new Fruit("APPLE", 0.33);
-        Fruit cherry = new Fruit("CHERRY", 0.10);
-        Fruit mango = new Fruit("MANGO", 0.45);
-
+        Scanner scanner = new Scanner(System.in);
+        String userInput = scanner.nextLine();
+        String[] userItems = userInput.split(" ");
 
         ShoppingBasket basket = new ShoppingBasket();
+        for (int i = 0; i < userItems.length; i++) {
+            double price = getPriceForFruit(userItems[i]);
 
-        basket.addFruit(apple);
-        basket.addFruit(cherry);
-        basket.addFruit(mango);
-        basket.addFruit(apple);
-        basket.addFruit(cherry);
-        basket.addFruit(mango);
+            if (price == 0.0) {
+                System.out.println("Unknown fruit: " + userItems[i]);
+                continue;
+            }
+            basket.addFruit(new Fruit(userItems[i], price));
+        }
 
-        System.out.println(basket.getBasketItems());
-        System.out.println(basket.getFruitCount());
-        System.out.println(basket.calculateTotalCost());
+        basket.getBasketItems();
+        System.out.println("Sub-total £" + String.format("%.2f", basket.calculateTotalCost()));
+    }
 
+    private static double getPriceForFruit(String fruitName) {
+        switch (fruitName.toLowerCase()) {
+            case "apple":
+                return 0.80;
+            case "orange":
+                return 0.75;
+            case "mango":
+                return 2.50;
+            case "cherry":
+                return 0.24;
+            default:
+                return 0.0; // 0.0 indicates an unknown fruit
+        }
     }
 }

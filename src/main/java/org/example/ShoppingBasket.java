@@ -1,6 +1,8 @@
 package org.example;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ShoppingBasket {
     private List<Fruit> fruits;
@@ -13,10 +15,6 @@ public class ShoppingBasket {
         fruits.add(fruit);
     }
 
-    public void removeFruit(Fruit fruit) {
-        fruits.remove(fruit);
-    }
-
     public double calculateTotalCost() {
         double totalCost = 0.0;
         for (Fruit fruit : fruits) {
@@ -25,20 +23,18 @@ public class ShoppingBasket {
         return totalCost;
     }
 
-    public int getFruitCount() {
-        return fruits.size();
-    }
+    public void getBasketItems() {
+        Map<String, Integer> itemCounts = new HashMap<>();
 
-    public String getBasketItems() {
-        String items = "";
+        // Count the occurrences of each fruit
         for (Fruit fruit : fruits) {
-            items += fruit.getName() + ", ";
+            itemCounts.put(fruit.getName(), itemCounts.getOrDefault(fruit.getName(), 0) + 1);
         }
-        if (!fruits.isEmpty()) {
-            items = items.substring(0, items.length() - 2); // Remove the trailing ", "
-        }
-        return items;
+
+        // Print the items with quantities
+        itemCounts.forEach((fruitName, quantity) -> {
+            System.out.println(quantity + " x " + fruitName);
+        });
+    }
     }
 
-
-}
