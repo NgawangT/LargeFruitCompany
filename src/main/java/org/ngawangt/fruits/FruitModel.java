@@ -1,20 +1,20 @@
 package org.ngawangt.fruits;
 
 public class FruitModel{
-    private String name;
+    private FruitName fruitName;
     private int price;
 
     private int itemQuantity;
 
-    public FruitModel(String name, int price) {
-        this.name = name;
+    public FruitModel(FruitName fruitName, int price) {
+        this.fruitName = fruitName;
         this.price = price;
         this.itemQuantity = 1;
     }
 
 
-    public String getName() {
-        return name;
+    public FruitName getName() {
+        return fruitName;
     }
 
     public int getPrice() {

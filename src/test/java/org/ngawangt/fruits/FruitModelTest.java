@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 
 class FruitModelTest {
 
-    FruitModel cherry = new FruitModel("CHERRY", 24);
+    FruitModel cherry = new FruitModel(FruitName.CHERRY, 24);
     @Test
     void getName() {
-        assertEquals(cherry.getName(),"CHERRY");
+        assertEquals(cherry.getName(),FruitName.CHERRY);
     }
 
     @Test

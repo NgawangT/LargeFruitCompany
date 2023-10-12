@@ -2,6 +2,7 @@ package org.ngawangt.discounts;
 import java.util.List;
 import org.ngawangt.basket.ShoppingBasket;
 import org.ngawangt.fruits.FruitModel;
+import org.ngawangt.fruits.FruitName;
 
 // Cherry Discount (50p discount if more than 4 cherries):
 public class CherryDiscount implements Discount {
@@ -9,7 +10,7 @@ public class CherryDiscount implements Discount {
     public boolean applies(List<FruitModel> basketItems) {
         int cherryCount = 0;
         for (FruitModel item : basketItems) {
-            if (item.getName().equalsIgnoreCase("cherry")) {
+            if (item.getName() == FruitName.CHERRY) {
                 cherryCount += item.getitemQuantity();
             }
         }

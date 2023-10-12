@@ -2,13 +2,14 @@ package org.ngawangt.discounts;
 import java.util.List;
 import org.ngawangt.basket.ShoppingBasket;
 import org.ngawangt.fruits.FruitModel;
+import org.ngawangt.fruits.FruitName;
 
 public class MangoDiscount implements Discount{
     @Override
     public boolean applies(List<FruitModel> basketItems) {
         int mangoCount = 0;
         for (FruitModel item : basketItems) {
-            if (item.getName().equalsIgnoreCase("mango")) {
+            if (item.getName() == FruitName.MANGO) {
                 mangoCount += item.getitemQuantity();
             }
         }
@@ -21,7 +22,7 @@ public class MangoDiscount implements Discount{
 
         int itemPrice = 0;
         for (FruitModel item : basketItems) {
-            if (item.getName().equalsIgnoreCase("apple")) {
+            if (item.getName() == FruitName.APPLE) {
                 itemPrice = item.getPrice();
                 break;
             }

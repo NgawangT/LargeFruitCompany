@@ -2,13 +2,14 @@ package org.ngawangt.discounts;
 import java.util.List;
 import org.ngawangt.basket.ShoppingBasket;
 import org.ngawangt.fruits.FruitModel;
+import org.ngawangt.fruits.FruitName;
 
 public class AppleDiscount implements Discount {
     @Override
     public boolean applies(List<FruitModel> basketItems) {
         // Check if there are any apples in the basket
         for (FruitModel item : basketItems) {
-            if (item.getName().equalsIgnoreCase("apple")) {
+            if (item.getName() == FruitName.APPLE) {
                 return true;
             }
         }
@@ -26,11 +27,11 @@ public class AppleDiscount implements Discount {
         int applePrice = 0;
 
         for (FruitModel item : basketItems) {
-            if (item.getName().equalsIgnoreCase("apple")) {
+            if (item.getName() == FruitName.APPLE) {
                 appleCount += item.getitemQuantity();
                 applePrice = item.getPrice();
             }
-            if (item.getName().equalsIgnoreCase("mango")) {
+            if (item.getName() == FruitName.MANGO) {
                 mangoCount += item.getitemQuantity();
             }
         }
@@ -44,7 +45,7 @@ public class AppleDiscount implements Discount {
         if (mangoDiscount.applies(basketItems) && mangoCount >= 3) {
             int applesToDiscount = 1; // You should only discount 1 apple
             for (FruitModel basketItem : basketItems) {
-                if (basketItem.getName().equalsIgnoreCase("apple") && applesToDiscount > 0) {
+                if (basketItem.getName() == FruitName.APPLE && applesToDiscount > 0) {
                     discountInPence -= (applePrice * 10 / 100); // Subtract the discount from the total
                     applesToDiscount--;
                 }

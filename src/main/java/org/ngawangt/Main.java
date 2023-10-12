@@ -2,6 +2,7 @@ package org.ngawangt;
 
 import org.ngawangt.basket.ShoppingBasket;
 import org.ngawangt.fruits.FruitModel;
+import org.ngawangt.fruits.FruitName;
 import org.ngawangt.fruits.FruitRepository;
 import org.ngawangt.discounts.CherryDiscount;
 import org.ngawangt.discounts.AppleDiscount;
@@ -21,7 +22,7 @@ public class Main {
         // create fruitRepository instance to use createProductMap for
         // retrieving fruit data to assign as a fruit object.
         FruitRepository fruitRepository = new FruitRepository();
-        Map<String, FruitModel> fruitMap = fruitRepository.createProductMap();
+        Map<FruitName, FruitModel> fruitMap = fruitRepository.createProductMap();
 
         ShoppingBasket basket = new ShoppingBasket();
 
@@ -32,10 +33,19 @@ public class Main {
 
 
         for (String item : userItems) {
-            FruitModel fruit = fruitMap.get(item.toLowerCase());
+            FruitName fruitName = FruitName.valueOf(item.toUpperCase());
 
-            if (fruit == null) {
+            // Check if the provided fruit name is valid
+            if (fruitName == null) {
                 System.out.println("Unknown fruit: " + item);
+                continue;
+            }
+
+            FruitModel fruit = fruitMap.get(fruitName);
+
+            // Check if the fruit model is null
+            if (fruit == null) {
+                System.out.println("Fruit model not found for: " + fruitName);
                 continue;
             }
             basket.addFruit(fruit);
