@@ -9,7 +9,7 @@ public class FruitModel{
     public FruitModel(String name, int price) {
         this.name = name;
         this.price = price;
-        this.itemQuantity = 0;
+        this.itemQuantity = 1;
     }
 
 
