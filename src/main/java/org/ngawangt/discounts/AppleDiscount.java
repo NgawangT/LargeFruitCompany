@@ -3,17 +3,29 @@ import java.util.List;
 import org.ngawangt.basket.ShoppingBasket;
 import org.ngawangt.fruits.FruitModel;
 import org.ngawangt.fruits.FruitName;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class AppleDiscount implements Discount {
+    private static final Logger LOGGER = LoggerFactory.getLogger(AppleDiscount.class);
     @Override
     public boolean applies(List<FruitModel> basketItems) {
+        boolean applies = false;
+
         // Check if there are any apples in the basket
         for (FruitModel item : basketItems) {
             if (item.getName() == FruitName.APPLE) {
-                return true;
+                applies = true;
+                break;
             }
         }
-        return false;
+
+        if (applies) {
+            LOGGER.info("Apple discount applies.");
+        } else {
+            LOGGER.info("Apple discount does not apply.");
+        }
+        return applies;
     }
 
     @Override
@@ -51,6 +63,13 @@ public class AppleDiscount implements Discount {
                 }
             }
         }
+
+        if (discountInPence > 0) {
+            LOGGER.info("Apple discount calculated: " + discountInPence + "p");
+        } else {
+            LOGGER.info("Apple discount not applicable or zero.");
+        }
+
 
         return discountInPence;
     }
