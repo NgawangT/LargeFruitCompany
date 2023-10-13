@@ -20,7 +20,6 @@ class AppleDiscountTest {
 
     @Test
     void appliesWhenApplesInBasket() {
-        // Add apple fruits to the basket
         basket.addFruit(new FruitModel(FruitName.APPLE, 80));
 
         assertTrue(appleDiscount.applies(basket.getBasketItems()));
@@ -28,7 +27,6 @@ class AppleDiscountTest {
 
     @Test
     void appliesWhenNoApplesInBasket() {
-        // Add other fruits (not apples) to the basket
         basket.addFruit(new FruitModel(FruitName.CHERRY, 250));
 
         assertFalse(appleDiscount.applies(basket.getBasketItems()));
@@ -36,7 +34,6 @@ class AppleDiscountTest {
 
     @Test
     void calculateDiscountForNoApples() {
-        // Add other fruits (not apples) to the basket
         basket.addFruit(new FruitModel(FruitName.MANGO, 250));
 
         int discountAmount = appleDiscount.calculateDiscount(basket);
@@ -45,7 +42,6 @@ class AppleDiscountTest {
 
     @Test
     void calculateDiscountForApples() {
-        // Add apple fruits to the basket
         basket.addFruit(new FruitModel(FruitName.APPLE, 80));
         basket.addFruit(new FruitModel(FruitName.APPLE, 80));
         basket.addFruit(new FruitModel(FruitName.APPLE, 80));
@@ -56,7 +52,6 @@ class AppleDiscountTest {
 
     @Test
     void calculateDiscountForMangoDiscount() {
-        // Add 3 mangoes and 1 apple to the basket
         basket.addFruit(new FruitModel(FruitName.MANGO, 250));
         basket.addFruit(new FruitModel(FruitName.MANGO, 250));
         basket.addFruit(new FruitModel(FruitName.MANGO, 250));

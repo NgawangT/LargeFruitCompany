@@ -29,8 +29,5 @@ public class FruitModel{
         this.itemQuantity = quantity;
     }
 
-    // look at currciuclmum page -> aside for float and double
-    // big decimal class approach or use integers and / 100 (easiest approach)
-
 }
 

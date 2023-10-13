@@ -1,5 +1,5 @@
 package org.ngawangt.discounts;
-import java.util.ArrayList;
+
 import java.util.List;
 import org.ngawangt.basket.ShoppingBasket;
 import org.ngawangt.fruits.FruitModel;
@@ -22,12 +22,12 @@ public class BigSpenderDiscount implements Discount{
         for (FruitModel item : basketItems) {
             totalCostInPence += item.getPrice() * item.getitemQuantity();
         }
-        return (int) (totalCostInPence * 2 / 100);
+        return totalCostInPence * 2 / 100;
     }
 
     @Override
     public String getDescription() {
-        return "Big Spender Discount-";
+        return "Big Spender Discount -";
     }
 }
 

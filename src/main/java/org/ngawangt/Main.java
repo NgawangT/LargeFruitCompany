@@ -34,25 +34,9 @@ public class Main {
     private static ShoppingBasket createShoppingBasket(String[] userItems, Map<FruitName, FruitModel> fruitMap) {
         ShoppingBasket basket = new ShoppingBasket();
 
-
         for (String item : userItems) {
             Optional<FruitName> optionalFruitName = getFruitName(item);
 
-            //FruitName fruitName = FruitName.valueOf(item.toUpperCase());
-
-//            if (fruitName == null) {
-//                System.out.println("Unknown fruit: " + item);
-//                continue;
-//            }
-//
-//            FruitModel fruit = fruitMap.get(fruitName);
-//
-//            if (fruit == null) {
-//                System.out.println("Fruit model not found for: " + fruitName);
-//                continue;
-//            }
-//            basket.addFruit(fruit);
-//        }
             if (optionalFruitName.isPresent()) {
                 FruitName fruitName = optionalFruitName.get();
                 FruitModel fruit = fruitMap.get(fruitName);
@@ -63,7 +47,7 @@ public class Main {
                 }
                 basket.addFruit(fruit);
             } else {
-                System.out.println("-- Unknown fruit entered: " + item);
+                System.out.println("--- Unknown fruit entered: " + item);
             }
         }
         return basket;
@@ -92,11 +76,11 @@ public class Main {
 
         if (mangoDiscount.applies(basket.getBasketItems())) {
             int discountAmount = mangoDiscount.calculateDiscount(basket);
-            System.out.println("1 Free Apple -" + discountAmount + "p");
+            System.out.println(mangoDiscount.getDescription() + discountAmount + "p");
         }
         if (cherryDiscount.applies(basket.getBasketItems())) {
             int discountAmount = cherryDiscount.calculateDiscount(basket);
-            System.out.println("Cherry Discount -" + discountAmount + "p");
+            System.out.println(cherryDiscount.getDescription() + discountAmount + "p");
         }
         if (appleDiscount.applies(basket.getBasketItems())) {
             int discountAmount = appleDiscount.calculateDiscount(basket);
@@ -104,7 +88,7 @@ public class Main {
         }
         if (bigSpenderDiscount.applies(basket.getBasketItems())) {
             bigSpenderDeduction = bigSpenderDiscount.calculateDiscount(basket);
-            System.out.println("Big Spender Discount -" + bigSpenderDeduction + "p");
+            System.out.println(bigSpenderDiscount.getDescription() + bigSpenderDeduction + "p");
         }
 
         System.out.println("Total £" + String.format("%.2f", (basket.calculateTotalCostToPounds() - bigSpenderDeduction / 100.0)));

@@ -4,7 +4,6 @@ import org.ngawangt.basket.ShoppingBasket;
 import org.ngawangt.fruits.FruitModel;
 import org.ngawangt.fruits.FruitName;
 
-// Cherry Discount (50p discount if more than 4 cherries):
 public class CherryDiscount implements Discount {
     @Override
     public boolean applies(List<FruitModel> basketItems) {
@@ -24,7 +23,7 @@ public class CherryDiscount implements Discount {
 
     @Override
     public String getDescription() {
-        return "50p discount for more than 4 cherries";
+        return "Cherry Discount -";
     }
 }
 

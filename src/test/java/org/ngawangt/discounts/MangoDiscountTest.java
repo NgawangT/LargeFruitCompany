@@ -21,7 +21,6 @@ class MangoDiscountTest {
 
     @Test
     void appliesWhenMangoCountIsEqualOrGreaterThan3() {
-        // Add 3 mango fruits to the basket
         basket.addFruit(new FruitModel(FruitName.MANGO, 250));
         basket.addFruit(new FruitModel(FruitName.MANGO, 250));
         basket.addFruit(new FruitModel(FruitName.MANGO, 250));
@@ -31,7 +30,6 @@ class MangoDiscountTest {
 
     @Test
     void appliesWhenMangoCountIsLessThan3() {
-        // Add 2 mango fruits to the basket
         basket.addFruit(new FruitModel(FruitName.MANGO, 250));
         basket.addFruit(new FruitModel(FruitName.MANGO, 250));
 

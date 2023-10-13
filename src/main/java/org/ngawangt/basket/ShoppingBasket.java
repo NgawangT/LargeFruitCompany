@@ -25,8 +25,6 @@ public class ShoppingBasket {
             }
         }
 
-        // If not, add the fruit with a quantity of 1 to the basket.
-        fruit.setitemQuantity(1);
         this.basketItems.add(fruit);
     }
 
@@ -37,10 +35,7 @@ public class ShoppingBasket {
             totalCostInPence += basketItem.getPrice() * basketItem.getitemQuantity();
         }
 
-        // Convert total cost from pence to pounds (divide by 100.0 to get a double result)
-        double totalCostInPounds = totalCostInPence / 100.0;
-
-        return totalCostInPounds;
+        return totalCostInPence / 100.0;
     }
 
     public void printFruits() {

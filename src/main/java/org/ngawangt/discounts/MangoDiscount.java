@@ -33,7 +33,7 @@ public class MangoDiscount implements Discount{
 
     @Override
     public String getDescription() {
-        return "1 free apple for every 3 or more mangos";
+        return "1 Free Apple -";
     }
 }
 
