@@ -1,12 +1,20 @@
 package org.ngawangt.fruits;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
 class FruitModelTest {
 
-    FruitModel cherry = new FruitModel(FruitName.CHERRY, 24);
+    private FruitModel cherry;
+
+    @BeforeEach
+    void setup(){
+        cherry = new FruitModel(FruitName.CHERRY, 24);
+    }
+
     @Test
     void getName() {
         assertEquals(cherry.getName(),FruitName.CHERRY);
