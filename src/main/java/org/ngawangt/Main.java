@@ -25,8 +25,7 @@ public class Main {
         ShoppingBasket basket = createShoppingBasket(userItems, fruitMap);
         basket.printFruits();
 
-        double subTotal = basket.calculateTotalCostToPounds();
-        System.out.println("Sub-total £" + String.format("%.2f", subTotal));
+        System.out.println("Sub-total £" + String.format("%.2f", basket.calculateTotalCostToPounds()));
 
         printDiscounts(basket);
     }
@@ -91,6 +90,6 @@ public class Main {
             System.out.println(bigSpenderDiscount.getDescription() + bigSpenderDeduction + "p");
         }
 
-        System.out.println("Total £" + String.format("%.2f", (basket.calculateTotalCostToPounds() - bigSpenderDeduction / 100.0)));
+        System.out.println("Total £" + String.format("%.2f", (basket.calculateTotalCostToPounds() - (bigSpenderDeduction / 100.0))));
     }
 }

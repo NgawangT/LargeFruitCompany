@@ -35,16 +35,12 @@ public class AppleDiscount implements Discount {
         int discountInPence = 0;
 
         int appleCount = 0;
-        int mangoCount = 0;
         int applePrice = 0;
 
         for (FruitModel item : basketItems) {
             if (item.getName() == FruitName.APPLE) {
                 appleCount += item.getitemQuantity();
                 applePrice = item.getPrice();
-            }
-            if (item.getName() == FruitName.MANGO) {
-                mangoCount += item.getitemQuantity();
             }
         }
 
@@ -54,7 +50,7 @@ public class AppleDiscount implements Discount {
         }
 
         // Apply the discount for getting a free apple with 3 or more mangoes
-        if (mangoDiscount.applies(basketItems) && mangoCount >= 3) {
+        if (mangoDiscount.applies(basketItems)) {
             int applesToDiscount = 1; // You should only discount 1 apple
             for (FruitModel basketItem : basketItems) {
                 if (basketItem.getName() == FruitName.APPLE && applesToDiscount > 0) {
