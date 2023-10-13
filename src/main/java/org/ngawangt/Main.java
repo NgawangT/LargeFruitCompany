@@ -10,6 +10,7 @@ import org.ngawangt.discounts.MangoDiscount;
 import org.ngawangt.discounts.BigSpenderDiscount;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Main {
@@ -33,23 +34,47 @@ public class Main {
     private static ShoppingBasket createShoppingBasket(String[] userItems, Map<FruitName, FruitModel> fruitMap) {
         ShoppingBasket basket = new ShoppingBasket();
 
+
         for (String item : userItems) {
-            FruitName fruitName = FruitName.valueOf(item.toUpperCase());
+            Optional<FruitName> optionalFruitName = getFruitName(item);
 
-            if (fruitName == null) {
-                System.out.println("Unknown fruit: " + item);
-                continue;
+            //FruitName fruitName = FruitName.valueOf(item.toUpperCase());
+
+//            if (fruitName == null) {
+//                System.out.println("Unknown fruit: " + item);
+//                continue;
+//            }
+//
+//            FruitModel fruit = fruitMap.get(fruitName);
+//
+//            if (fruit == null) {
+//                System.out.println("Fruit model not found for: " + fruitName);
+//                continue;
+//            }
+//            basket.addFruit(fruit);
+//        }
+            if (optionalFruitName.isPresent()) {
+                FruitName fruitName = optionalFruitName.get();
+                FruitModel fruit = fruitMap.get(fruitName);
+
+                if (fruit == null) {
+                    System.out.println("Fruit model not found for: " + fruitName);
+                    continue;
+                }
+                basket.addFruit(fruit);
+            } else {
+                System.out.println("-- Unknown fruit entered: " + item);
             }
-
-            FruitModel fruit = fruitMap.get(fruitName);
-
-            if (fruit == null) {
-                System.out.println("Fruit model not found for: " + fruitName);
-                continue;
-            }
-            basket.addFruit(fruit);
         }
         return basket;
+    }
+
+    private static Optional<FruitName> getFruitName(String item) {
+        try {
+            return Optional.of(FruitName.valueOf(item.toUpperCase()));
+        } catch (IllegalArgumentException e) {
+            return Optional.empty();
+        }
     }
 
     private static void printDiscounts(ShoppingBasket basket) {
